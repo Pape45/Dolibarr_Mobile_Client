@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Your App Name',
+      title: 'DOLIBARR MOBILE CLIENT',
       home: LoginForm(),
     );
   }
