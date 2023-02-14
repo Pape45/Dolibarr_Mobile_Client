@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/api/user_api.dart';
-
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'model/user.dart';
 import 'screens/home_page.dart';
 
 void main() {
@@ -12,9 +13,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'DOLIBARR MOBILE CLIENT',
-      home: LoginForm(),
+    return FutureBuilder<String?>(
+      future: FlutterSecureStorage().read(key: 'token'),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // Still loading the token
+          return const CircularProgressIndicator();
+        } else if (snapshot.hasData && snapshot.data != null) {
+          // Found the token, show the HomePage
+          final user = User(token: snapshot.data!, code: 0, entity: 0, message: '');
+          return MaterialApp(
+            title: 'DOLIBARR MOBILE',
+            home: HomePage(user: user),
+          );
+        } else {
+          // Token not found, show the login form
+          return const MaterialApp(
+            title: 'DOLIBARR MOBILE',
+            home: LoginForm(),
+          );
+        }
+      },
     );
   }
 }
@@ -32,6 +51,7 @@ class LoginFormState extends State<LoginForm> {
   late final TextEditingController _passwordController;
   bool _isLoading = false;
   late String _errorMessage;
+  final _storage = FlutterSecureStorage();
 
   @override
   void initState() {
@@ -56,7 +76,8 @@ class LoginFormState extends State<LoginForm> {
         _loginController.text,
         _passwordController.text,
       );
-      // Do something with the user, such as storing the token in a global state
+      // Store the user's token
+      await _storage.write(key: 'token', value: user.token);
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomePage(user: user)),
@@ -70,6 +91,14 @@ class LoginFormState extends State<LoginForm> {
         _isLoading = false;
       });
     }
+  }
+
+  @override
+  void dispose() {
+    // Clean up the TextEditingController instances when the widget is disposed
+    _loginController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 
   @override
