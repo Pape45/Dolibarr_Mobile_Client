@@ -4,6 +4,8 @@ import 'package:dolibarr_mobile_client/model/user.dart';
 
 class UserApi {
   static const _baseUrl = 'http://localhost/dolibarr16-04/api/index.php';
+  // Emulator link :
+  //static const _baseUrl = 'http://154.65.37.4/dolibarr16-04/api/index.php';
 
   static Future<User> fetchUser(String username, String password) async {
     final response = await http.post(
