@@ -1,11 +1,11 @@
 class User {
-  final int successCode;
+  final int code;
   final String token;
-  final String entity;
+  final int entity;
   final String message;
 
   const User({
-    required this.successCode,
+    required this.code,
     required this.token,
     required this.entity,
     required this.message,
@@ -13,10 +13,10 @@ class User {
 
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
-      successCode: json['success']['code'],
-      token: json['success']['token'],
-      entity: json['success']['entity'],
-      message: json['success']['message'],
+      code: int.parse(json['success']['code'].toString()),
+      token: json['success']['token'] as String,
+      entity: int.parse(json['success']['entity'].toString()),
+      message: json['success']['message'] as String,
     );
   }
 }
