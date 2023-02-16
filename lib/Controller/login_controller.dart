@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,27 +13,31 @@ class LoginController extends GetxController {
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController urlController = TextEditingController();
+  bool isExented = false;
+  bool isLoading = false;
 
 
-  @override
-  void dispose(){
-    loginController.dispose();
-    urlController.dispose();
-    passwordController.dispose();
-  }
+
+
+  // @override
+  // void dispose(){
+  //   loginController.dispose();
+  //   urlController.dispose();
+  //   passwordController.dispose();
+  // }
 
   // Definition de la methode pour se connecter
 
-   Future<void> loginWithEmail() async {
+   Future<void> loginWithLoginPassword() async {
 
     // Definition de l'entete
    
-    var headers = {'Content-type' : 'application/json'};
+    var headers = {'Content-type':'application/json'};
 
     try {
 
       // Url pour la connection
-      var url = Uri.parse(PointEntree.urlDeBase  + PointEntree.authPoint.login);
+      var url = Uri.parse(PointEntree.urlDeBase + PointEntree.authPoint.login);
 
       Map body = {
         'login' : loginController.text,
@@ -44,23 +48,41 @@ class LoginController extends GetxController {
       http.Response reponse = await http.post(url,headers:headers,body:jsonEncode(body));
       
       if(reponse.statusCode == 200){
+
+        isLoading = false;
         final json = jsonDecode(reponse.body);
 
 
           loginController.clear();
           passwordController.clear();
           urlController.clear();
+          print('Salut');
 
           // Go to home // Page  d'accueil
-          Get.off(null);
+          Get.to(const HomePage());
  
+      }
+      else if (reponse.statusCode == 403){
+       // isLoading = false;
+      
+        Get.snackbar(
+          'Erreur sur l\'authentification',
+          'Votre email ou mot de passe est incorrect',
+          colorText:  Color.fromRGBO(28, 123, 206, 1),
+          icon: Icon(Icons.error_outline_sharp),
+          
+         // borderColor:  Color.fromRGBO(28, 123, 206, 1),
+        );
+      
+
       }
       else {
         throw jsonDecode(reponse.body)['message'] ?? 'Erreur inconnue';
+        
       }
 
     } catch (e) {
-      Get.back();
+
       showDialog(
         barrierDismissible: false,
         context: Get.context!,
@@ -74,6 +96,7 @@ class LoginController extends GetxController {
           );
          }
       );
+       Get.back();
     }
 
   }
