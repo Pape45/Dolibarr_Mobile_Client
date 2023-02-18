@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'Controller/login_controller.dart';
 import 'Vue/authentification_screen.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -44,9 +45,14 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
+
        home:  (!directementHome) ? HomePage() : AuthentificationScreen() ,
-      // home:  AuthentificationScreen(),
+    
+
     );
   }
 }
 
+
+  }
+}
