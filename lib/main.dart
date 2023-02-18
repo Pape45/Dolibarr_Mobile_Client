@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import 'Controller/login_controller.dart';
 import 'Vue/authentification_screen.dart';
-
+import 'Vue/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,6 @@ void main() {
 class MyApp extends StatelessWidget {
 
   const MyApp({super.key});
-
-  
 
   // This widget is the root of your application.
   @override
@@ -45,14 +43,8 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-
-       home:  (!directementHome) ? HomePage() : AuthentificationScreen() ,
-    
-
+       home:  (directementHome) ? HomePage() : Welcome() ,
     );
   }
 }
 
-
-  }
-}

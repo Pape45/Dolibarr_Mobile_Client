@@ -1,18 +1,23 @@
+import 'package:dolibarr_mobile_client/Models/point_entree_api.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+import 'authentification_screen.dart';
+
+class Welcome extends StatefulWidget {
+  const Welcome({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<Welcome> createState() => _WelcomeState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(10),
         color: const Color(0xff1C7BCE),
         child: Center(
           child: Column(
@@ -22,7 +27,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 margin: const EdgeInsets.only(bottom: 5),
                 child: Image.asset(
-                  "lib\\images\\draw1.png",
+                  "lib/Images/2.jpg",
                   width: size.width / 2,
                   height: size.height / 4,
                 ),
@@ -30,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: Image.asset(
-                  "lib\\images\\draw1.png",
+                  "lib/Images/draw1.png",
                   width: size.width / 2,
                   height: size.height / 4,
                 ),
@@ -72,7 +77,9 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(AuthentificationScreen());
+                    },
                     child: const Center(
                       child: Text(
                         'Suivant',

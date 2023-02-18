@@ -56,7 +56,7 @@ class _InputTextFieldState extends State<InputTextField> {
       
      // padding: EdgeInsets.only(bottom: 5, top: 5),
       child: TextFormField(
-        obscureText: voir,
+        obscureText:  voir,
         onChanged: (val){
           setState(() {
             loginController.isExented = true;
