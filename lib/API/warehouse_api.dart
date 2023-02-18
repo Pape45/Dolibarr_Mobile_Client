@@ -27,7 +27,8 @@ class WarehouseApi {
     String? zip,
     required String town,
     String? phone,
-    String? fax, required String country,
+    String? fax,
+    required String country,
   }) async {
     final response = await http.post(Uri.parse('$apiUrl/warehouses'),
         headers: {
@@ -43,10 +44,20 @@ class WarehouseApi {
           'town': town,
           'phone': phone,
           'fax': fax,
+          'country': country,
         }));
 
     if (response.statusCode != 200) {
       throw Exception('Failed to add warehouse');
+    }
+  }
+
+  static Future<void> deleteWarehouse(int warehouseId) async {
+    final response = await http.delete(Uri.parse('$apiUrl/warehouses/$warehouseId'),
+        headers: {'DOLAPIKEY': apiKey});
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to delete warehouse');
     }
   }
 }

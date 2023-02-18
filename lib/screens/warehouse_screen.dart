@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_list.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_add.dart';
+import 'package:dolibarr_mobile_client/screens/warehouse_delete.dart';
 
 class WarehouseScreen extends StatelessWidget {
   const WarehouseScreen({Key? key}) : super(key: key);
@@ -90,7 +91,11 @@ class WarehouseScreen extends StatelessWidget {
               ),
               child: const Text('Supprimer un entrepôt'),
               onPressed: () {
-                // TODO: Implémenter la logique pour supprimer un entrepôt
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => WarehouseDeleteApi()),
+                );
               },
             ),
           ],
