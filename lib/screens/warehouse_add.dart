@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/API/warehouse_api.dart';
 
+import '../API/country_api.dart';
+
 class WarehouseAddPage extends StatefulWidget {
   const WarehouseAddPage({Key? key}) : super(key: key);
 
@@ -9,6 +11,18 @@ class WarehouseAddPage extends StatefulWidget {
 }
 
 class WarehouseAddPageState extends State<WarehouseAddPage> {
+  String _countryCode = '';
+  List<Country> _countries = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchCountries().then((countries) {
+      setState(() {
+        _countries = countries;
+      });
+    });
+  }
 
   final _formKey = GlobalKey<FormState>();
 
@@ -22,13 +36,15 @@ class WarehouseAddPageState extends State<WarehouseAddPage> {
   String _town = '';
   String _phone = '';
   String _fax = '';
-  String _country = '';
+  Country? _selectedCountry;
 
   void _addWarehouse() async {
     if (_formKey.currentState!.validate()) {
       setState(() {
         _isLoading = true;
       });
+
+      final country = _countries.firstWhere((c) => c.code == _countryCode);
 
       try {
         await WarehouseApi.addWarehouse(
@@ -40,7 +56,7 @@ class WarehouseAddPageState extends State<WarehouseAddPage> {
           town: _town,
           phone: _phone,
           fax: _fax,
-          country: _country,
+          country: country.name,
         );
         Navigator.pop(context, true);
       } catch (e) {
@@ -154,16 +170,23 @@ class WarehouseAddPageState extends State<WarehouseAddPage> {
                         _fax = value;
                       });
                     }),
-                TextFormField(
+                DropdownButtonFormField<Country>(
                   decoration: const InputDecoration(labelText: 'Country'),
-                  onChanged: (value) {
+                  value: _selectedCountry,
+                  items: _countries.map((country) {
+                    return DropdownMenuItem<Country>(
+                      value: country,
+                      child: Text(country.name),
+                    );
+                  }).toList(),
+                  onChanged: (selected) {
                     setState(() {
-                      _country = value;
+                      _selectedCountry = selected;
                     });
                   },
                   validator: (value) {
-                    if (value!.isEmpty) {
-                      return 'Please enter a country';
+                    if (value == null) {
+                      return 'Please select a country';
                     }
                     return null;
                   },
