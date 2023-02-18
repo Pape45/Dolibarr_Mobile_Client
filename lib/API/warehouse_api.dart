@@ -53,11 +53,47 @@ class WarehouseApi {
   }
 
   static Future<void> deleteWarehouse(int warehouseId) async {
-    final response = await http.delete(Uri.parse('$apiUrl/warehouses/$warehouseId'),
+    final response = await http.delete(
+        Uri.parse('$apiUrl/warehouses/$warehouseId'),
         headers: {'DOLAPIKEY': apiKey});
 
     if (response.statusCode != 200) {
       throw Exception('Failed to delete warehouse');
+    }
+  }
+
+  static Future<void> updateWarehouse({
+    required int warehouseId,
+    String? label,
+    String? description,
+    String? status,
+    String? address,
+    String? zip,
+    String? town,
+    String? phone,
+    String? fax,
+    String? country,
+  }) async {
+    final response =
+        await http.put(Uri.parse('$apiUrl/warehouses/$warehouseId'),
+            headers: {
+              'Content-Type': 'application/json',
+              'DOLAPIKEY': apiKey,
+            },
+            body: json.encode({
+              if (label != null) 'label': label,
+              if (description != null) 'description': description,
+              if (status != null) 'statut': status,
+              if (address != null) 'address': address,
+              if (zip != null) 'zip': zip,
+              if (town != null) 'town': town,
+              if (phone != null) 'phone': phone,
+              if (fax != null) 'fax': fax,
+              if (country != null) 'country': country,
+            }));
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to update warehouse');
     }
   }
 }
