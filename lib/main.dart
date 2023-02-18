@@ -3,6 +3,8 @@ import 'package:dolibarr_mobile_client/api/user_api.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'model/user.dart';
 import 'screens/home_page.dart';
+import 'package:flutter/gestures.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
           return const CircularProgressIndicator();
         } else if (snapshot.hasData && snapshot.data != null) {
           // Found the token, show the HomePage
-          final user = User(token: snapshot.data!, code: 0, entity: 0, message: '');
+          final user =
+              User(token: snapshot.data!, code: 0, entity: 0, message: '');
           return MaterialApp(
             title: 'DOLIBARR MOBILE',
             home: HomePage(user: user),
@@ -105,7 +108,17 @@ class LoginFormState extends State<LoginForm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Dolibarr'),
+        centerTitle: true,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 20.0),
+            child: Text(
+              'ERP/CRM',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+        ],
       ),
       body: Center(
         child: SingleChildScrollView(
@@ -118,7 +131,12 @@ class LoginFormState extends State<LoginForm> {
                 children: [
                   TextFormField(
                     controller: _loginController,
-                    decoration: const InputDecoration(labelText: 'Login'),
+                    decoration: InputDecoration(
+                      labelText: 'Login',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your login';
@@ -126,9 +144,15 @@ class LoginFormState extends State<LoginForm> {
                       return null;
                     },
                   ),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _passwordController,
-                    decoration: const InputDecoration(labelText: 'Password'),
+                    decoration: InputDecoration(
+                      labelText: 'Password',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
                     obscureText: true,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -140,15 +164,45 @@ class LoginFormState extends State<LoginForm> {
                   const SizedBox(height: 16),
                   ElevatedButton(
                     onPressed: _isLoading ? null : _submitForm,
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.blue,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      minimumSize: const Size(double.infinity, 50.0),
+                    ),
                     child: _isLoading
                         ? const CircularProgressIndicator()
-                        : const Text('Login'),
+                        : const Text('Se connecter'),
                   ),
                   if (_errorMessage.isNotEmpty)
                     Text(
                       _errorMessage,
                       style: const TextStyle(color: Colors.red),
                     ),
+                  const SizedBox(height: 16),
+                  Text.rich(
+                    TextSpan(
+                      text: 'En continuant, vous acceptez ',
+                      style: TextStyle(fontSize: 10),
+                      children: <TextSpan>[
+                        TextSpan(
+                          text: 'nos conditions générales et notre politique de confidentialité.',
+                          style: TextStyle(
+                            fontSize: 10,
+                            decoration: TextDecoration.underline,
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              // Mettre ici le code à exécuter quand l'utilisateur clique sur le lien
+                            },
+                        ),
+                      ],
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                 ],
               ),
             ),
