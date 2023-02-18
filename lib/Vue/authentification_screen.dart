@@ -8,6 +8,11 @@ import 'Mes_Widgets/submit.dart';
 class AuthentificationScreen extends StatefulWidget {
   const AuthentificationScreen({super.key});
 
+  void initState(){
+
+
+  }
+
   @override
   State<AuthentificationScreen> createState() => _AuthentificationScreenState();
 }
@@ -15,9 +20,8 @@ class AuthentificationScreen extends StatefulWidget {
 
 class _AuthentificationScreenState extends State<AuthentificationScreen> {
   // Initialisation du controller ;
-  LoginController loginController = Get.put(LoginController());
-
-  final _formKey = GlobalKey<FormState>();
+ // LoginController loginController = Get.find(LoginController());
+  LoginController loginController = Get.find();
 
   @override
   void dispose() {
@@ -25,6 +29,10 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
     loginController.urlController.dispose();
     loginController.loginController.dispose();
   }
+
+
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +54,7 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                 height: size.height / 4,
                 width: size.width / 1.8,
               ),
+
 
               //  Container qui du formulaire
 
@@ -85,6 +94,7 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                                       children: [
                                         CircleAvatar(
                                           child: Icon(Icons.lock_open),
+                 
                                         ),
                                         Expanded(
                                           child: Center(

@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -11,6 +12,8 @@ class LoginController extends GetxController {
   TextEditingController urlController = TextEditingController();
   bool isExented = false;
   bool isLoading = false;
+  final storage = new FlutterSecureStorage();
+   //  _storage =  const  FlutterSecureStorage();
 
   Future<void> loginWithLoginPassword() async {
     // Definition de l'entete
@@ -41,7 +44,15 @@ class LoginController extends GetxController {
         // Go to home // Page  d'accueil
         Get.to(HomePage());
       } else if (reponse.statusCode == 403) {
-        // isLoading = false;
+
+        await  storage.write(key:"token", value:json['success']['token']);
+        print(json['success']['token']);
+        
+
+
+          loginController.clear();
+          passwordController.clear();
+          urlController.clear();
 
         Get.snackbar(
           'Erreur sur l\'authentification',

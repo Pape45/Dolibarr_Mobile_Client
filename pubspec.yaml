@@ -40,9 +40,11 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.3
   lottie: ^2.2.0
+
   flutter_launcher_icons: ^0.11.0
   flutter_neumorphic: ^3.2.0
   constants: ^0.0.1
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,8 +72,19 @@ flutter:
   assets:
     - lib/Images/1.jpg
     - lib/Images/2.jpg
-
-  #   - images/a_dot_ham.jpeg
+    - lib/Images/box1.png
+    - lib/Images/blue.png
+    - lib/Images/brand.png
+    - lib/Images/doli-removebg-preview.png
+    - lib/Images/fondBlac.jpg
+    - lib/Images/fondd.jpg
+    - lib/Images/iconTiers.png
+    - lib/Images/produit.png
+    - lib/Images/servicv1.png
+    - lib/Images/tiers.png
+    - lib/Images/weee.png
+    - lib/Images/wer.jpg
+    - lib/Images/draw1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -98,3 +111,4 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  
