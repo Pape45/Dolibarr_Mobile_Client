@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_list.dart';
+import 'package:dolibarr_mobile_client/screens/warehouse_add.dart';
 
 class WarehouseScreen extends StatelessWidget {
   const WarehouseScreen({Key? key}) : super(key: key);
@@ -32,7 +33,8 @@ class WarehouseScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const WarehouseList()),
+                  MaterialPageRoute(
+                      builder: (context) => const WarehouseList()),
                 );
               },
             ),
@@ -50,7 +52,11 @@ class WarehouseScreen extends StatelessWidget {
               ),
               child: const Text('Ajouter un entrepôt'),
               onPressed: () {
-                // TODO: Implémenter la logique pour ajouter un entrepôt
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WarehouseAddPage()),
+                );
               },
             ),
             const SizedBox(height: 16.0),
