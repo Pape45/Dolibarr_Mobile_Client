@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,8 @@ class LoginController extends GetxController {
   TextEditingController urlController = TextEditingController();
   bool isExented = false;
   bool isLoading = false;
+  final storage = new FlutterSecureStorage();
+   //  _storage =  const  FlutterSecureStorage();
 
 
 
@@ -52,11 +55,14 @@ class LoginController extends GetxController {
         isLoading = false;
         final json = jsonDecode(reponse.body);
 
+        await  storage.write(key:"token", value:json['success']['token']);
+        print(json['success']['token']);
+        
+
 
           loginController.clear();
           passwordController.clear();
           urlController.clear();
-          print('Salut');
 
           // Go to home // Page  d'accueil
           Get.to(const HomePage());

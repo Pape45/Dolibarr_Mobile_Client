@@ -10,6 +10,11 @@ import 'Mes_Widgets/submit.dart';
 class AuthentificationScreen extends StatefulWidget {
   const AuthentificationScreen({super.key});
 
+  void initState(){
+
+
+  }
+
   @override
   State<AuthentificationScreen> createState() => _AuthentificationScreenState();
 }
@@ -17,20 +22,15 @@ class AuthentificationScreen extends StatefulWidget {
 class _AuthentificationScreenState extends State<AuthentificationScreen> {
 
   // Initialisation du controller ;
-  LoginController loginController = Get.put(LoginController());
+ // LoginController loginController = Get.find(LoginController());
+  LoginController loginController = Get.find();
+
 
   final _formKey = GlobalKey<FormState>();
 
 
 
-  @override
-
-  void dispose(){
-    loginController.passwordController.dispose();
-    loginController.urlController.dispose();
-    loginController.loginController.dispose();
-  }
-
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -38,23 +38,15 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body : Container(
-       // color: Colors.white,
+        color: Colors.white,
        padding: EdgeInsets.only(top: 40),
         width: size.width,
         height: size.height,
-       //decoration: BoxDecoration(
-        
 
-          // gradient: LinearGradient(
-          //   begin:Alignment.topCenter,
-          //   colors: [Colors.white,Colors.white, Colors.white,Colors.white,Color.fromRGBO(90, 158, 218, 1)],
-          //   end: Alignment.bottomCenter,
-          // ),  
-        //),
         child: SafeArea(
           child: SingleChildScrollView(
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
 
                   // Image Logo Dolibarr
@@ -68,6 +60,7 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                   //  Container qui du formulaire
 
                   Container(
+                    margin: EdgeInsets.only(top: 30),
                     //padding: EdgeInsets.only(left:20, right:20,bottom:0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(7),
@@ -75,19 +68,16 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                       border: Border.all(color: Color.fromRGBO(28, 123, 206, 1))
                       
                     ),
-                   // height: loginController.isExented ? size.height / 1.8: size.height / 2.1,
                    height: size.height / 2.3,
                     width: size.width / 1.1,
                     child: SingleChildScrollView(
                       child: Center(
                         child:  Column(
                         
-                    //  mainAxisAlignment: Main,
                       children: [
                        Form(
                         key: _formKey,
                         child: Container(
-                         //height: isExented ? size.height / 2.3 : 0,
                           width: size.width / 1.1,
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -127,24 +117,18 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                            
                               InputTextField(loginController.loginController, 'Mettez ici le Login', Icons.person, false, Icons.person),
                               InputTextField(loginController.passwordController, 'Mettez ici le Password', Icons.visibility, true, Icons.lock_rounded),
-                              //(loginController.isExented) 
                               SubmitButton(
                                 title : 'Se Connecter',
                                 onPressed:()
                                 {
                                    if (_formKey.currentState!.validate()) {
-                                    //  setState(() {
-                                    //     loginController.isLoading = true;
-                                    //   });
-                                    // (!loginController.isLoading) 
-                                     
+                                
                                     loginController.loginWithLoginPassword();
 
                                   }
                                 }
                                 
                               )
-                               //Container(),
 
                             ],
                           ),
@@ -156,7 +140,6 @@ class _AuthentificationScreenState extends State<AuthentificationScreen> {
                     ),
                     )
                   ),
-                  Text('Salut')
                 ],
               ),
               
