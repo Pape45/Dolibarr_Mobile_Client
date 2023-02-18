@@ -40,6 +40,7 @@ dependencies:
   get: ^4.6.5
   google_fonts: ^4.0.3
   lottie: ^2.2.0
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   flutter_test:
@@ -67,6 +68,20 @@ flutter:
   assets:
     - lib/Images/1.jpg
     - lib/Images/2.jpg
+    - lib/Images/box1.png
+    - lib/Images/blue.png
+    - lib/Images/brand.png
+    - lib/Images/doli-removebg-preview.png
+    - lib/Images/fondBlac.jpg
+    - lib/Images/fondd.jpg
+    - lib/Images/iconTiers.png
+    - lib/Images/produit.png
+    - lib/Images/servicv1.png
+    - lib/Images/tiers.png
+    - lib/Images/weee.png
+    - lib/Images/wer.jpg
+
+
 
   #   - images/a_dot_ham.jpeg
 
