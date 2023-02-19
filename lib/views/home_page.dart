@@ -1,29 +1,32 @@
+<<<<<<< HEAD:lib/Vue/welcome_screen.dart
 import 'package:dolibarr_mobile_client/Controller/login_controller.dart';
 import 'package:dolibarr_mobile_client/Models/point_entree_api.dart';
 import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
 import 'package:dolibarr_mobile_client/Vue/loading.dart';
+=======
+>>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import 'authentification_screen.dart';
-
-class Welcome extends StatefulWidget {
-  const Welcome({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Welcome> createState() => _WelcomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
+<<<<<<< HEAD:lib/Vue/welcome_screen.dart
 
 
 class _WelcomeState extends State<Welcome> {
 
+=======
+class _HomePageState extends State<HomePage> {
+>>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(10),
         color: const Color(0xff1C7BCE),
         child: Center(
           child: Column(
@@ -33,7 +36,7 @@ class _WelcomeState extends State<Welcome> {
               Container(
                 margin: const EdgeInsets.only(bottom: 5),
                 child: Image.asset(
-                  "lib/Images/2.jpg",
+                  "lib\\images\\draw1.png",
                   width: size.width / 2,
                   height: size.height / 4,
                 ),
@@ -41,7 +44,7 @@ class _WelcomeState extends State<Welcome> {
               Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: Image.asset(
-                  "lib/Images/draw1.png",
+                  "lib\\images\\draw1.png",
                   width: size.width / 2,
                   height: size.height / 4,
                 ),
@@ -83,9 +86,13 @@ class _WelcomeState extends State<Welcome> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
+<<<<<<< HEAD:lib/Vue/welcome_screen.dart
                     onTap: () {
                       Get.to(LoadingScreen());
                     },
+=======
+                    onTap: () {},
+>>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
                     child: const Center(
                       child: Text(
                         'Suivant',
