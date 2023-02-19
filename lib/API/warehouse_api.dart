@@ -4,23 +4,19 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class WarehouseApi {
-
-
   static String apiUrl = 'http://localhost/dolibarr16-04/api/index.php';
 
   //static final String apiKey = '' ;
-  
 
   //const WarehouseApi();
 
   LoginController loginController = Get.find();
 
-
   Future<List<Map<String, dynamic>>> getWarehouses() async {
     final response = await http.get(
-
-        Uri.parse('$apiUrl/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
-        headers: {'DOLAPIKEY':'${loginController.valeurStockee}'});
+        Uri.parse(
+            '$apiUrl/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
+        headers: {'DOLAPIKEY': '${loginController.valeurStockee}'});
 
     if (response.statusCode == 200) {
       final List<dynamic> warehousesJson = json.decode(response.body);
@@ -31,7 +27,6 @@ class WarehouseApi {
   }
 
   Future<void> addWarehouse({
-
     required String label,
     String? description,
     String? status,
