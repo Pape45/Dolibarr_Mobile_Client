@@ -31,6 +31,10 @@ class _InputTextFieldState extends State<InputTextField> {
   Widget build(BuildContext context) {
 
     var size = MediaQuery.of(context).size;
+
+    if (widget.labelText.contains('mot de passe')){
+      voir = true;
+    }
     
     String controle;
 
