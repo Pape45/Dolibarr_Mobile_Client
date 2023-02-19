@@ -36,8 +36,6 @@ class LoginController extends GetxController {
         loginController.clear();
         passwordController.clear();
         urlController.clear();
-        print('Salut');
-
         // Go to home // Page  d'accueil
         Get.to(HomePage());
       } else if (reponse.statusCode == 403) {
