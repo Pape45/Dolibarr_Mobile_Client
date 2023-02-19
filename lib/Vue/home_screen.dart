@@ -1,4 +1,3 @@
-
 import 'package:dolibarr_mobile_client/Vue/Mes_Widgets/module.dart';
 import 'package:dolibarr_mobile_client/Vue/sideBar.dart';
 import 'package:flutter/material.dart';

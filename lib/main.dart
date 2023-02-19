@@ -1,7 +1,6 @@
 import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'Controller/login_controller.dart';
 import 'Vue/authentification_screen.dart';
 import 'Vue/loading.dart';
@@ -29,14 +28,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-
-       
         primarySwatch: Colors.blue,
       ),
        home: Welcome(),
-
     );
   }
 }
+
 
 
