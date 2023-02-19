@@ -1,4 +1,7 @@
+import 'package:dolibarr_mobile_client/Controller/login_controller.dart';
 import 'package:dolibarr_mobile_client/Models/point_entree_api.dart';
+import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
+import 'package:dolibarr_mobile_client/Vue/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +14,10 @@ class Welcome extends StatefulWidget {
   State<Welcome> createState() => _WelcomeState();
 }
 
+
+
 class _WelcomeState extends State<Welcome> {
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -78,7 +84,7 @@ class _WelcomeState extends State<Welcome> {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
                     onTap: () {
-                      Get.to(AuthentificationScreen());
+                      Get.to(LoadingScreen());
                     },
                     child: const Center(
                       child: Text(

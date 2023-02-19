@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import 'Controller/login_controller.dart';
 import 'Vue/authentification_screen.dart';
+import 'Vue/loading.dart';
 import 'Vue/welcome_screen.dart';
 
 void main() {
@@ -20,21 +21,7 @@ class MyApp extends StatelessWidget {
 
   
     LoginController loginController = Get.put(LoginController());
-    bool  directementHome = false;
-
-    // Verfication 
-    Future<void> Verification() async {
-      bool keyExists = await loginController.storage.containsKey(key:'token');
-      if (keyExists){
-        print('La cle existe');
-        directementHome = true;
-      }
-      else 
-        directementHome = false;
-    }
-
-    Verification();
-
+   
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
@@ -43,7 +30,7 @@ class MyApp extends StatelessWidget {
        
         primarySwatch: Colors.blue,
       ),
-       home:  (directementHome) ? HomePage() : Welcome() ,
+       home: Welcome(),
     );
   }
 }

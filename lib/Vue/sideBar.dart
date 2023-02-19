@@ -6,15 +6,40 @@ import 'package:get/get.dart';
 import '../Controller/login_controller.dart';
 
 
-class SideBar extends StatelessWidget {
+class SideBar extends StatefulWidget {
    SideBar({ Key? key, }) : super(key: key);
 
+  @override
+  State<SideBar> createState() => _SideBarState();
+}
+
+class _SideBarState extends State<SideBar> {
   LoginController loginController = Get.find();
 
+  String? valeurStockee = 'Salut Domada' ;
 
+  @override
+  initState () {
+    super.initState();
+    lireValeur();
+
+  }
+
+  void lireValeur() async {
+    await loginController.storage.read(key: 'token').then((value){
+      if (value != null){
+        setState(() {
+          valeurStockee = value;
+        });
+      }
+    });
+
+  }
 
   @override
   Widget build(BuildContext context) {
+
+
 
     var size = MediaQuery.of(context).size;
     return Drawer(
@@ -85,7 +110,16 @@ class SideBar extends StatelessWidget {
                 ),
               ],
             ),
-          )
+          
+          ),
+
+          Container(
+            color: Colors.blue,
+            padding: EdgeInsets.all(10),
+            child: Text (
+            valeurStockee!,
+            style: TextStyle(color:Colors.white),
+            ),)
         ],
       ),
     );
