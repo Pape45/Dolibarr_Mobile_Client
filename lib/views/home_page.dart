@@ -1,11 +1,13 @@
-<<<<<<< HEAD:lib/Vue/welcome_screen.dart
+
 import 'package:dolibarr_mobile_client/Controller/login_controller.dart';
 import 'package:dolibarr_mobile_client/Models/point_entree_api.dart';
 import 'package:dolibarr_mobile_client/Vue/home_screen.dart';
 import 'package:dolibarr_mobile_client/Vue/loading.dart';
-=======
->>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
+
+
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,14 +16,15 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-<<<<<<< HEAD:lib/Vue/welcome_screen.dart
 
 
-class _WelcomeState extends State<Welcome> {
 
-=======
+
+
+
+
 class _HomePageState extends State<HomePage> {
->>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -86,13 +89,13 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.transparent,
                   child: InkWell(
                     borderRadius: BorderRadius.circular(10),
-<<<<<<< HEAD:lib/Vue/welcome_screen.dart
+
                     onTap: () {
                       Get.to(LoadingScreen());
                     },
-=======
-                    onTap: () {},
->>>>>>> cda9b04d436b4a8e084e5e02e92b8f6772fa8038:lib/views/home_page.dart
+
+  
+
                     child: const Center(
                       child: Text(
                         'Suivant',
@@ -110,5 +113,6 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
+  
+}
 }

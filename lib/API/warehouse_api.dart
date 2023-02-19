@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class WarehouseApi {
 
 
-  static String apiUrl = 'http://10.106.98.100/api/index.php';
+  static String apiUrl = 'http://localhost/dolibarr16-04/api/index.php';
 
   //static final String apiKey = '' ;
   
@@ -19,7 +19,7 @@ class WarehouseApi {
   Future<List<Map<String, dynamic>>> getWarehouses() async {
     final response = await http.get(
 
-        Uri.parse('http://10.106.98.100/api/index.php/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
+        Uri.parse('$apiUrl/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
         headers: {'DOLAPIKEY':'${loginController.valeurStockee}'});
 
     if (response.statusCode == 200) {
