@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_list.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_add.dart';
 import 'package:dolibarr_mobile_client/screens/warehouse_delete.dart';
+import 'package:get/get.dart';
 
 class WarehouseScreen extends StatelessWidget {
   const WarehouseScreen({Key? key}) : super(key: key);
@@ -10,8 +11,9 @@ class WarehouseScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Gestion des entrepôts'),
-        backgroundColor: Colors.blue,
+        backgroundColor: Color.fromRGBO(28, 123, 206, 1),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -21,7 +23,7 @@ class WarehouseScreen extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Color.fromRGBO(28, 123, 206, 1),
                 disabledForegroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 textStyle: const TextStyle(
@@ -32,11 +34,7 @@ class WarehouseScreen extends StatelessWidget {
               ),
               child: const Text('Lister les entrepôts'),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const WarehouseList()),
-                );
+                Get.to( WarehouseList());
               },
             ),
             const SizedBox(height: 16.0),

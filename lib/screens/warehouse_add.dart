@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:dolibarr_mobile_client/API/warehouse_api.dart';
-
 import '../API/country_api.dart';
 
 class WarehouseAddPage extends StatefulWidget {
@@ -11,6 +10,9 @@ class WarehouseAddPage extends StatefulWidget {
 }
 
 class WarehouseAddPageState extends State<WarehouseAddPage> {
+
+  WarehouseApi warehouseApi = new WarehouseApi();
+
   String _countryCode = '';
   List<Country> _countries = [];
 
@@ -47,7 +49,7 @@ class WarehouseAddPageState extends State<WarehouseAddPage> {
       final country = _countries.firstWhere((c) => c.code == _countryCode);
 
       try {
-        await WarehouseApi.addWarehouse(
+        await warehouseApi.addWarehouse(
           label: _label,
           description: _description,
           status: _status,

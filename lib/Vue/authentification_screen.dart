@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import '../Controller/login_controller.dart';
 import 'Mes_Widgets/input.dart';
 import 'Mes_Widgets/submit.dart';

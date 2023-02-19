@@ -1,4 +1,3 @@
-import 'package:dolibarr_mobile_client/Models/point_entree_api.dart';
 import 'package:dolibarr_mobile_client/Vue/authentification_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,7 +15,7 @@ class SideBar extends StatefulWidget {
 class _SideBarState extends State<SideBar> {
   LoginController loginController = Get.find();
 
-  String? valeurStockee = 'Salut Domada' ;
+ // String? valeurStockee = 'Salut Domada' ;
 
   @override
   initState () {
@@ -29,7 +28,7 @@ class _SideBarState extends State<SideBar> {
     await loginController.storage.read(key: 'token').then((value){
       if (value != null){
         setState(() {
-          valeurStockee = value;
+          loginController.valeurStockee = value;
         });
       }
     });
@@ -117,7 +116,7 @@ class _SideBarState extends State<SideBar> {
             color: Colors.blue,
             padding: EdgeInsets.all(10),
             child: Text (
-            valeurStockee!,
+            loginController.valeurStockee!,
             style: TextStyle(color:Colors.white),
             ),)
         ],

@@ -1,15 +1,26 @@
 import 'dart:convert';
+import 'package:dolibarr_mobile_client/Controller/login_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class WarehouseApi {
-  static const String apiUrl = 'http://localhost/dolibarr16-04/api/index.php';
-  static const String apiKey = 'ed2fcd1305854bbb87dc9761c053a3dea5fbcee8';
 
-  static Future<List<Map<String, dynamic>>> getWarehouses() async {
+
+  static String apiUrl = 'http://10.106.98.100/api/index.php';
+
+  //static final String apiKey = '' ;
+  
+
+  //const WarehouseApi();
+
+  LoginController loginController = Get.find();
+
+
+  Future<List<Map<String, dynamic>>> getWarehouses() async {
     final response = await http.get(
-        Uri.parse(
-            '$apiUrl/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
-        headers: {'DOLAPIKEY': apiKey});
+
+        Uri.parse('http://10.106.98.100/api/index.php/warehouses?sortfield=t.rowid&sortorder=ASC&limit=100'),
+        headers: {'DOLAPIKEY':'${loginController.valeurStockee}'});
 
     if (response.statusCode == 200) {
       final List<dynamic> warehousesJson = json.decode(response.body);
@@ -19,7 +30,8 @@ class WarehouseApi {
     }
   }
 
-  static Future<void> addWarehouse({
+  Future<void> addWarehouse({
+
     required String label,
     String? description,
     String? status,
@@ -33,7 +45,7 @@ class WarehouseApi {
     final response = await http.post(Uri.parse('$apiUrl/warehouses'),
         headers: {
           'Content-Type': 'application/json',
-          'DOLAPIKEY': apiKey,
+          'DOLAPIKEY': '${loginController.valeurStockee}',
         },
         body: json.encode({
           'label': label,
@@ -52,17 +64,17 @@ class WarehouseApi {
     }
   }
 
-  static Future<void> deleteWarehouse(int warehouseId) async {
+  Future<void> deleteWarehouse(int warehouseId) async {
     final response = await http.delete(
         Uri.parse('$apiUrl/warehouses/$warehouseId'),
-        headers: {'DOLAPIKEY': apiKey});
+        headers: {'DOLAPIKEY': '${loginController.valeurStockee}'});
 
     if (response.statusCode != 200) {
       throw Exception('Failed to delete warehouse');
     }
   }
 
-  static Future<void> updateWarehouse({
+  Future<void> updateWarehouse({
     required int warehouseId,
     String? label,
     String? description,
@@ -78,7 +90,7 @@ class WarehouseApi {
         await http.put(Uri.parse('$apiUrl/warehouses/$warehouseId'),
             headers: {
               'Content-Type': 'application/json',
-              'DOLAPIKEY': apiKey,
+              'DOLAPIKEY': '${loginController.valeurStockee}',
             },
             body: json.encode({
               if (label != null) 'label': label,

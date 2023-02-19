@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../entrepots_screen.dart';
+import '../warehouse_screen.dart';
 import '../product_screen.dart';
 import '../tiers_screen.dart';
 
@@ -41,7 +41,7 @@ class Modules extends StatelessWidget {
       pages = ProductScreen();
     }
     else {
-      pages = EntrepotScreen();
+      pages = WarehouseScreen();
     }
 
 

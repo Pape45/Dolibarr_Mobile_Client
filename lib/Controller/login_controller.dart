@@ -13,6 +13,7 @@ class LoginController extends GetxController {
   bool isExented = false;
   bool isLoading = false;
   final storage = new FlutterSecureStorage();
+  String?  valeurStockee = 'Test';
    //  _storage =  const  FlutterSecureStorage();
 
   Future<void> loginWithLoginPassword() async {

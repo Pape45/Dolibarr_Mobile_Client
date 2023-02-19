@@ -9,6 +9,9 @@ class WarehouseDeleteApi extends StatefulWidget {
 }
 
 class _WarehouseDeleteApiState extends State<WarehouseDeleteApi> {
+
+  WarehouseApi warehouseapi = new WarehouseApi();
+
   final _formKey = GlobalKey<FormState>();
   int? _warehouseId;
   bool _isDeleting = false;
@@ -38,7 +41,7 @@ class _WarehouseDeleteApiState extends State<WarehouseDeleteApi> {
       });
 
       try {
-        await WarehouseApi.deleteWarehouse(_warehouseId!);
+        await warehouseapi.deleteWarehouse(_warehouseId!);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Entrepôt supprimé')),
         );
