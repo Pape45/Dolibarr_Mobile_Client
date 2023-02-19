@@ -80,7 +80,6 @@ flutter:
     - lib/Images/tiers.png
     - lib/Images/weee.png
     - lib/Images/wer.jpg
-    - lib/Images/draw1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
